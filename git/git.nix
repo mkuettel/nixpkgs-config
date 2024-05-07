@@ -109,9 +109,9 @@ in {
         pager = false;
       };
 
-      commit = {
+      commit = if config.git.signingKey != null then {
         signingkey = config.git.signingKey;
-      };
+      } else {};
     };
   };
 }
