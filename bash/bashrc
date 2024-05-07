@@ -111,3 +111,25 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+
+if [ -f "$home/.nix-profile/etc/profile.d/nix.sh" ]; then
+    source $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
+
+export PATH="$PATH:$HOME/.nix-profile/bin"
+
+# Home-Manager
+source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
